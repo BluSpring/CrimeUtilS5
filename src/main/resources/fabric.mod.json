@@ -1,0 +1,29 @@
+{
+    "schemaVersion": 1,
+    "id": "crimeutils5",
+    "version": "${version}",
+    "name": "CrimeUtilS5",
+    "description": "Crimecraft S5 utility mod",
+    "authors": [],
+    "contact": {},
+    "license": "MIT",
+    "icon": "icon.png",
+    "environment": "*",
+    "entrypoints": {
+        "client": [
+            "xyz.bluspring.crimeutils5.client.CrimeUtilS5Client"
+        ],
+        "main": [
+            "xyz.bluspring.crimeutils5.CrimeUtilS5"
+        ]
+    },
+    "mixins": [
+        "crimeutils5.mixins.json"
+    ],
+    "depends": {
+        "fabricloader": ">=${loader_version}",
+        "fabric-language-kotlin": ">=${kotlin_loader_version}",
+        "fabric": "*",
+        "minecraft": "${minecraft_version}"
+    }
+}

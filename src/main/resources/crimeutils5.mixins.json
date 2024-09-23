@@ -1,0 +1,17 @@
+{
+    "required": true,
+    "minVersion": "0.8",
+    "package": "xyz.bluspring.crimeutils5.mixin",
+    "compatibilityLevel": "JAVA_21",
+    "mixins": [
+    ],
+    "client": [
+        "MipmapGeneratorMixin",
+        "SpriteContentsMixin",
+        "SpriteContentsMixin$InterpolationDataMixin",
+        "SpriteLoaderMixin"
+    ],
+    "injectors": {
+        "defaultRequire": 1
+    }
+}
