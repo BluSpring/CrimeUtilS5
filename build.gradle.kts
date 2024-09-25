@@ -35,7 +35,10 @@ repositories {
 dependencies {
     // To change the versions see the gradle.properties file
     minecraft("com.mojang:minecraft:${project.property("minecraft_version")}")
-    mappings(loom.officialMojangMappings())
+    mappings(loom.layered() {
+        officialMojangMappings()
+        parchment("org.parchmentmc.data:parchment-1.21:2024.07.28@zip")
+    })
     modImplementation("net.fabricmc:fabric-loader:${project.property("loader_version")}")
     modImplementation("net.fabricmc:fabric-language-kotlin:${project.property("kotlin_loader_version")}")
 
