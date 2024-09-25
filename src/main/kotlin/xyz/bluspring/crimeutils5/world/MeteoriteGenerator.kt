@@ -33,22 +33,31 @@ object MeteoriteGenerator {
         val length = offsetMeteorCenter.subtract(landCenter).center.length().absoluteValue.toInt()
         val pos = BlockPos.MutableBlockPos()
         val radialPos = BlockPos.MutableBlockPos()
+        val radialPos2 = BlockPos.MutableBlockPos()
 
         for (i in 0..length) {
             val progress = (i.toFloat() / length.toFloat())
             pos.lerp(progress, offsetMeteorCenter, landCenter)
 
+            // generate new random based on center, so we can be consistent across restarts
+            val random = RandomSource.create(pos.asLong())
+            val noise = SimplexNoise(random)
+
             val radius = Mth.lerpInt(progress, finalRadius, meteorRadius)
+            val diameter = radius * 2
 
             for (y in -radius..radius) {
+                val verticalIntegrity = (y + radius).toDouble() / diameter.toDouble() + 0.1
+                val verticalIntegrityRandom = (verticalIntegrity * diameter).roundToInt().absoluteValue
+
                 for (x in -radius..radius) {
                     for (z in -radius..radius) {
-                        radialPos.set(x, y, z)
+                        radialPos2.set(x, y, z)
 
-                        if (radialPos.center.length() > radius)
+                        if (radialPos2.center.length() > radius)
                             continue
 
-                        radialPos.setWithOffset(pos, radialPos)
+                        radialPos.setWithOffset(pos, radialPos2)
 
                         if (IS_DEBUG) {
                             if (!level.getBlockState(radialPos).`is`(Blocks.GREEN_STAINED_GLASS)) {
@@ -56,6 +65,21 @@ object MeteoriteGenerator {
                             }
                         } else
                             level.removeBlock(radialPos, false)
+
+                        // Magma generation
+                        val value = noise.getValue(x.toDouble() * 15, y.toDouble(), z.toDouble() * 15)
+
+                        if (level.getHeight(Heightmap.Types.OCEAN_FLOOR, radialPos.x, radialPos.z) >= radialPos.y) {
+                            if (y <= -radius + (radius * 0.15) && pos.center.length() <= radius) {
+                                if (value > 0.5) {
+                                    level.setBlock(radialPos, Blocks.MAGMA_BLOCK.defaultBlockState(), 2)
+                                }
+                            } else if (radialPos2.center.length() <= radius + 2 && radialPos2.center.length() >= radius - 2) {
+                                if (random.nextInt(verticalIntegrityRandom * 2) == 0) {
+                                    level.setBlock(radialPos, Blocks.MAGMA_BLOCK.defaultBlockState(), 2)
+                                }
+                            }
+                        }
                     }
                 }
             }
