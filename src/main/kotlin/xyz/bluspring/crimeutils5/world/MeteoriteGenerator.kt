@@ -1,6 +1,7 @@
 package xyz.bluspring.crimeutils5.world
 
 import net.minecraft.core.BlockPos
+import net.minecraft.util.Mth
 import net.minecraft.util.RandomSource
 import net.minecraft.world.level.ServerLevelAccessor
 import net.minecraft.world.level.block.Blocks
@@ -11,13 +12,65 @@ import kotlin.math.absoluteValue
 import kotlin.math.roundToInt
 
 object MeteoriteGenerator {
-    private const val IS_DEBUG = true
+    private const val IS_DEBUG = false
     
-    fun generate(level: ServerLevelAccessor, entryPos: Vec3, velocity: Vec3, radius: Int) {
-        val slope = velocity.normalize()
+    fun generate(level: ServerLevelAccessor, centerPos: Vec3, velocity: Vec3, radius: Int) {
+        generateTail(level, BlockPos.containing(centerPos), radius, velocity)
+        generateCrater(level, BlockPos.containing(centerPos), radius, velocity.length())
+        generateMeteoriteBall(level, BlockPos.containing(centerPos), radius)
+    }
 
-        generateCrater(level, BlockPos.containing(entryPos), radius, velocity.length())
-        generateMeteoriteBall(level, BlockPos.containing(entryPos), radius)
+    fun generateTail(level: ServerLevelAccessor, meteorCenter: BlockPos, meteorRadius: Int, velocity: Vec3) {
+        val slope = velocity.normalize()
+        val avgVelocity = velocity.length()
+        val finalRadius = (meteorRadius.toDouble() * (avgVelocity / 2.0)).toInt()
+
+        val offsetMeteorCenter = meteorCenter.offset(0, meteorRadius + (meteorRadius / 2), 0)
+        val landCenter = offsetMeteorCenter.offset(BlockPos.containing(
+            velocity.scale((finalRadius / meteorRadius) * avgVelocity).reverse()
+        ))
+
+        val length = offsetMeteorCenter.subtract(landCenter).center.length().absoluteValue.toInt()
+        val pos = BlockPos.MutableBlockPos()
+        val radialPos = BlockPos.MutableBlockPos()
+
+        for (i in 0..length) {
+            val progress = (i.toFloat() / length.toFloat())
+            pos.lerp(progress, offsetMeteorCenter, landCenter)
+
+            val radius = Mth.lerpInt(progress, finalRadius, meteorRadius)
+
+            for (y in -radius..radius) {
+                for (x in -radius..radius) {
+                    for (z in -radius..radius) {
+                        radialPos.set(x, y, z)
+
+                        if (radialPos.center.length() > radius)
+                            continue
+
+                        radialPos.setWithOffset(pos, radialPos)
+
+                        if (IS_DEBUG) {
+                            if (!level.getBlockState(radialPos).`is`(Blocks.GREEN_STAINED_GLASS)) {
+                                level.setBlock(radialPos, Blocks.RED_STAINED_GLASS.defaultBlockState(), 2)
+                            }
+                        } else
+                            level.removeBlock(radialPos, false)
+                    }
+                }
+            }
+
+            if (IS_DEBUG)
+                level.setBlock(pos, Blocks.GREEN_STAINED_GLASS.defaultBlockState(), 2)
+        }
+    }
+
+    private fun BlockPos.MutableBlockPos.lerp(progress: Float, from: BlockPos, to: BlockPos): BlockPos {
+        return this.set(
+            Mth.lerpInt(progress, from.x, to.x),
+            Mth.lerpInt(progress, from.y, to.y),
+            Mth.lerpInt(progress, from.z, to.z)
+        )
     }
 
     fun generateCrater(level: ServerLevelAccessor, meteorCenter: BlockPos, meteorRadius: Int, meteorAvgVelocity: Double) {
