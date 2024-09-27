@@ -11,11 +11,14 @@ import net.minecraft.world.level.storage.loot.entries.LootItem
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator
+import xyz.bluspring.crimeutils5.components.CrimecraftItemComponents
 
 class CrimeUtilS5 : ModInitializer {
     val STELLARIS_METEOR = ResourceLocation.fromNamespaceAndPath("stellaris", "chests/meteor")
 
     override fun onInitialize() {
+        CrimecraftItemComponents.init()
+
         LootTableEvents.MODIFY.register { key, builder, source, registries ->
             if (key.location() == STELLARIS_METEOR) {
                 builder
@@ -82,5 +85,9 @@ class CrimeUtilS5 : ModInitializer {
 
     companion object {
         const val MOD_ID = "crimecraft"
+
+        fun id(name: String): ResourceLocation {
+            return ResourceLocation.fromNamespaceAndPath(MOD_ID, name)
+        }
     }
 }

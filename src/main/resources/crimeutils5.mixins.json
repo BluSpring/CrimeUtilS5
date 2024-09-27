@@ -4,8 +4,11 @@
     "package": "xyz.bluspring.crimeutils5.mixin",
     "compatibilityLevel": "JAVA_21",
     "mixins": [
+        "ItemMixin",
+        "ItemStackMixin"
     ],
     "client": [
+        "GuiGraphicsMixin",
         "MipmapGeneratorMixin",
         "SpriteContentsMixin",
         "SpriteContentsMixin$InterpolationDataMixin",

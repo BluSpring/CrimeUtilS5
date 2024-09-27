@@ -1,0 +1,11 @@
+{
+    "replace": false,
+    "values": [
+        "#c:foods/raw_meat",
+        "#c:foods/cooked_meat",
+        "#c:foods/raw_fish",
+        "#c:foods/cooked_fish",
+        "#c:foods/bread",
+        "minecraft:enchanted_golden_apple"
+    ]
+}
