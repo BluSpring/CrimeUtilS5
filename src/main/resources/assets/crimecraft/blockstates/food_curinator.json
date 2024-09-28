@@ -1,0 +1,71 @@
+{
+    "variants": {
+        "facing=north,filled=false,fueled=false": {
+            "model": "crimecraft:block/food_curinator_empty",
+            "y": 0
+        },
+        "facing=south,filled=false,fueled=false": {
+            "model": "crimecraft:block/food_curinator_empty",
+            "y": 180
+        },
+        "facing=east,filled=false,fueled=false": {
+            "model": "crimecraft:block/food_curinator_empty",
+            "y": 90
+        },
+        "facing=west,filled=false,fueled=false": {
+            "model": "crimecraft:block/food_curinator_empty",
+            "y": -90
+        },
+
+        "facing=north,filled=true,fueled=false": {
+            "model": "crimecraft:block/food_curinator_filled",
+            "y": 0
+        },
+        "facing=south,filled=true,fueled=false": {
+            "model": "crimecraft:block/food_curinator_filled",
+            "y": 180
+        },
+        "facing=east,filled=true,fueled=false": {
+            "model": "crimecraft:block/food_curinator_filled",
+            "y": 90
+        },
+        "facing=west,filled=true,fueled=false": {
+            "model": "crimecraft:block/food_curinator_filled",
+            "y": -90
+        },
+
+        "facing=north,filled=false,fueled=true": {
+            "model": "crimecraft:block/food_curinator_fueled",
+            "y": 0
+        },
+        "facing=south,filled=false,fueled=true": {
+            "model": "crimecraft:block/food_curinator_fueled",
+            "y": 180
+        },
+        "facing=east,filled=false,fueled=true": {
+            "model": "crimecraft:block/food_curinator_fueled",
+            "y": 90
+        },
+        "facing=west,filled=false,fueled=true": {
+            "model": "crimecraft:block/food_curinator_fueled",
+            "y": -90
+        },
+
+        "facing=north,filled=true,fueled=true": {
+            "model": "crimecraft:block/food_curinator_active",
+            "y": 0
+        },
+        "facing=south,filled=true,fueled=true": {
+            "model": "crimecraft:block/food_curinator_active",
+            "y": 180
+        },
+        "facing=east,filled=true,fueled=true": {
+            "model": "crimecraft:block/food_curinator_active",
+            "y": 90
+        },
+        "facing=west,filled=true,fueled=true": {
+            "model": "crimecraft:block/food_curinator_active",
+            "y": -90
+        }
+    }
+}

@@ -1,16 +1,30 @@
 package xyz.bluspring.crimeutils5
 
 import net.fabricmc.api.ModInitializer
+import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents
 import net.fabricmc.fabric.api.loot.v3.LootTableEvents
+import net.minecraft.core.Registry
+import net.minecraft.core.registries.BuiltInRegistries
+import net.minecraft.core.registries.Registries
 import net.minecraft.resources.ResourceLocation
+import net.minecraft.tags.TagKey
+import net.minecraft.world.flag.FeatureFlagSet
+import net.minecraft.world.inventory.MenuType
+import net.minecraft.world.item.BlockItem
+import net.minecraft.world.item.CreativeModeTabs
+import net.minecraft.world.item.Item
 import net.minecraft.world.item.Items
 import net.minecraft.world.level.block.Blocks
+import net.minecraft.world.level.block.entity.BlockEntityType
 import net.minecraft.world.level.storage.loot.LootPool
 import net.minecraft.world.level.storage.loot.entries.EmptyLootItem
 import net.minecraft.world.level.storage.loot.entries.LootItem
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator
+import xyz.bluspring.crimeutils5.block.FoodCurinatorBlock
+import xyz.bluspring.crimeutils5.block.FoodCurinatorBlockEntity
+import xyz.bluspring.crimeutils5.block.FoodCurinatorMenu
 import xyz.bluspring.crimeutils5.components.CrimecraftItemComponents
 
 class CrimeUtilS5 : ModInitializer {
@@ -81,6 +95,10 @@ class CrimeUtilS5 : ModInitializer {
                     )
             }
         }
+
+        ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.FUNCTIONAL_BLOCKS).register { entries ->
+            entries.accept(FOOD_CURINATOR_ITEM)
+        }
     }
 
     companion object {
@@ -89,5 +107,15 @@ class CrimeUtilS5 : ModInitializer {
         fun id(name: String): ResourceLocation {
             return ResourceLocation.fromNamespaceAndPath(MOD_ID, name)
         }
+
+        val FOOD_CURINATOR = Registry.register(BuiltInRegistries.BLOCK, id("food_curinator"), FoodCurinatorBlock())
+        val FOOD_CURINATOR_TYPE = Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE, id("food_curinator"),
+            BlockEntityType.Builder.of(::FoodCurinatorBlockEntity, FOOD_CURINATOR)
+                .build()
+        )
+        val FOOD_CURINATOR_ITEM = Registry.register(BuiltInRegistries.ITEM, id("food_curinator"), BlockItem(FOOD_CURINATOR, Item.Properties()))
+        val FOOD_CURINATOR_MENU = Registry.register(BuiltInRegistries.MENU, id("food_curinator"), MenuType<FoodCurinatorMenu>(::FoodCurinatorMenu, FeatureFlagSet.of()))
+
+        val CURABLE_TAG = TagKey.create(Registries.ITEM, id("curable"))
     }
 }
