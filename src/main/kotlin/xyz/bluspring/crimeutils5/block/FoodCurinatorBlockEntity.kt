@@ -195,8 +195,8 @@ class FoodCurinatorBlockEntity(pos: BlockPos, state: BlockState) : BaseContainer
     }
 
     companion object {
-        const val MAX_FLUID_AMOUNT = 32_000L
-        const val FOOD_CURINATION_TICKS = 900
+        const val MAX_FLUID_AMOUNT = 16_000L
+        const val FOOD_CURINATION_TICKS = 300
 
         fun getCopperDuration(copperStack: ItemStack): Int? {
             return if (copperStack.`is`(Items.COPPER_INGOT))
