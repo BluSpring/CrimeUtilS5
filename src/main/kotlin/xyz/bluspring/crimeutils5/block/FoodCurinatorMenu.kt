@@ -70,13 +70,13 @@ class FoodCurinatorMenu(id: Int, inventory: Inventory, val container: Container,
         if (slot != null && slot.hasItem()) {
             val itemStack2 = slot.item
             itemStack = itemStack2.copy()
-            if (index == 2) {
+            if (index == 4) {
                 if (!this.moveItemStackTo(itemStack2, 3, 39, true)) {
                     return ItemStack.EMPTY
                 }
 
                 slot.onQuickCraft(itemStack2, itemStack)
-            } else if (index != 1 && index != 0) {
+            } else if (index != 0 && index != 1 && index != 2 && index != 3) {
                 if (itemStack2.`is`(CrimeUtilS5.CURABLE_TAG)) {
                     if (!this.moveItemStackTo(itemStack2, 0, 1, false)) {
                         return ItemStack.EMPTY
