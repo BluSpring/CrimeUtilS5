@@ -2,12 +2,17 @@ package xyz.bluspring.crimeutils5.block
 
 import net.fabricmc.fabric.api.registry.FuelRegistry
 import net.minecraft.core.BlockPos
+import net.minecraft.core.Direction
 import net.minecraft.core.HolderLookup
 import net.minecraft.core.NonNullList
 import net.minecraft.core.component.DataComponents
 import net.minecraft.nbt.CompoundTag
 import net.minecraft.network.chat.Component
+import net.minecraft.network.protocol.Packet
+import net.minecraft.network.protocol.game.ClientGamePacketListener
+import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket
 import net.minecraft.world.ContainerHelper
+import net.minecraft.world.WorldlyContainer
 import net.minecraft.world.entity.player.Inventory
 import net.minecraft.world.inventory.AbstractContainerMenu
 import net.minecraft.world.inventory.ContainerData
@@ -15,13 +20,14 @@ import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.Items
 import net.minecraft.world.item.alchemy.Potions
 import net.minecraft.world.level.Level
+import net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity
 import net.minecraft.world.level.block.entity.BaseContainerBlockEntity
 import net.minecraft.world.level.block.state.BlockState
 import xyz.bluspring.crimeutils5.CrimeUtilS5
 import xyz.bluspring.crimeutils5.components.CrimecraftItemComponents
 import xyz.bluspring.crimeutils5.components.CuredComponent
 
-class FoodCurinatorBlockEntity(pos: BlockPos, state: BlockState) : BaseContainerBlockEntity(CrimeUtilS5.FOOD_CURINATOR_TYPE, pos, state) {
+class FoodCurinatorBlockEntity(pos: BlockPos, state: BlockState) : BaseContainerBlockEntity(CrimeUtilS5.FOOD_CURINATOR_TYPE, pos, state), WorldlyContainer {
     // 0 - input (food)
     // 1 - fuel (coal)
     // 2 - copper
@@ -39,6 +45,38 @@ class FoodCurinatorBlockEntity(pos: BlockPos, state: BlockState) : BaseContainer
 
     override fun getContainerSize(): Int {
         return 5
+    }
+
+    override fun getSlotsForFace(side: Direction): IntArray {
+        return when (side) {
+            Direction.UP -> intArrayOf(0)
+            Direction.DOWN -> intArrayOf(3, 4)
+            else -> intArrayOf(1, 2, 3)
+        }
+    }
+
+    override fun canPlaceItemThroughFace(index: Int, itemStack: ItemStack, direction: Direction?): Boolean {
+        if (index == 1 && AbstractFurnaceBlockEntity.isFuel(itemStack))
+            return true
+
+        if (index == 2 && getCopperDuration(itemStack) != null)
+            return true
+
+        if (index == 3 && hasWater(itemStack))
+            return true
+
+        if (index == 0 && itemStack.`is`(CrimeUtilS5.CURABLE_TAG))
+            return true
+
+        return false
+    }
+
+    override fun canTakeItemThroughFace(index: Int, stack: ItemStack, direction: Direction): Boolean {
+        if (index == 3) {
+            return !hasWater(stack)
+        }
+
+        return true
     }
 
     override fun createMenu(containerId: Int, inventory: Inventory): AbstractContainerMenu {
@@ -105,13 +143,13 @@ class FoodCurinatorBlockEntity(pos: BlockPos, state: BlockState) : BaseContainer
             if (stack.`is`(Items.WATER_BUCKET) && MAX_FLUID_AMOUNT - waterAmount >= 1000) {
                 waterAmount += 1000
                 this.setItem(3, ItemStack(Items.BUCKET))
-                this.setChanged()
+                this.markUpdated()
             } else if (stack.`is`(Items.POTION) && stack.has(DataComponents.POTION_CONTENTS) && stack.get(DataComponents.POTION_CONTENTS)?.`is`(Potions.WATER) == true
                 && MAX_FLUID_AMOUNT - waterAmount >= 334
             ) {
                 waterAmount += 334
                 this.setItem(3, ItemStack(Items.GLASS_BOTTLE))
-                this.setChanged()
+                this.markUpdated()
             }
         }
 
@@ -130,23 +168,23 @@ class FoodCurinatorBlockEntity(pos: BlockPos, state: BlockState) : BaseContainer
                     copperStack.shrink(1)
                     copperTicks = copperDuration
                     maxCopperTicks = copperDuration
-                    this.setChanged()
+                    this.markUpdated()
                 }
             }
 
             // Update block state
-            if (fuelTicks <= 0 && fuelStack.isEmpty && state.getValue(FoodCurinatorBlock.FUELED)) {
+            if (fuelTicks <= 0 && state.getValue(FoodCurinatorBlock.FUELED)) {
                 level.setBlock(pos, state.setValue(FoodCurinatorBlock.FUELED, false), 3)
-                this.setChanged()
+                this.markUpdated()
             } else if (waterAmount <= 0 && state.getValue(FoodCurinatorBlock.FILLED)) {
                 level.setBlock(pos, state.setValue(FoodCurinatorBlock.FILLED, false), 3)
-                this.setChanged()
+                this.markUpdated()
             } else if (fuelTicks > 0 && !state.getValue(FoodCurinatorBlock.FUELED)) {
                 level.setBlock(pos, state.setValue(FoodCurinatorBlock.FUELED, true), 3)
-                this.setChanged()
+                this.markUpdated()
             } else if (waterAmount > 0 && !state.getValue(FoodCurinatorBlock.FILLED)) {
                 level.setBlock(pos, state.setValue(FoodCurinatorBlock.FILLED, true), 3)
-                this.setChanged()
+                this.markUpdated()
             }
 
             // Food curination
@@ -161,7 +199,7 @@ class FoodCurinatorBlockEntity(pos: BlockPos, state: BlockState) : BaseContainer
                         fuelStack.shrink(1)
                         fuelTicks = fuel
                         maxFuelTicks = fuel
-                        this.setChanged()
+                        this.markUpdated()
                     }
                 }
 
@@ -192,6 +230,25 @@ class FoodCurinatorBlockEntity(pos: BlockPos, state: BlockState) : BaseContainer
             if (fuelTicks > 0)
                 fuelTicks--
         }
+    }
+
+    override fun getUpdateTag(registries: HolderLookup.Provider): CompoundTag {
+        return CompoundTag().apply {
+            ContainerHelper.saveAllItems(this, this@FoodCurinatorBlockEntity.items, registries)
+        }
+    }
+
+    override fun getUpdatePacket(): Packet<ClientGamePacketListener> {
+        return ClientboundBlockEntityDataPacket.create(this)
+    }
+
+    private fun markUpdated() {
+        super.setChanged()
+        this.getLevel()?.sendBlockUpdated(this.blockPos, this.blockState, this.blockState, 3)
+    }
+
+    override fun setChanged() {
+        markUpdated()
     }
 
     companion object {

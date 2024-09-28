@@ -9,12 +9,13 @@ import net.minecraft.world.inventory.*
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity
 import xyz.bluspring.crimeutils5.CrimeUtilS5
+import xyz.bluspring.crimeutils5.components.CrimecraftItemComponents
 
 class FoodCurinatorMenu(id: Int, inventory: Inventory, val container: Container, val data: ContainerData) : AbstractContainerMenu(CrimeUtilS5.FOOD_CURINATOR_MENU, id) {
     constructor(id: Int, inventory: Inventory) : this(id, inventory, SimpleContainer(5), SimpleContainerData(6))
 
     init {
-        this.addSlot(Slot(container, 0, 56, 17)) // input slot
+        this.addSlot(InputSlot(container, 0, 56, 17)) // input slot
         this.addSlot(FuelSlot(container, 1, 56, 53)) // fuel slot
         this.addSlot(CopperSlot(container, 2, 18, 36)) // copper slot
         this.addSlot(WaterSlot(container, 3, 142, 61)) // water slot
@@ -121,6 +122,12 @@ class FoodCurinatorMenu(id: Int, inventory: Inventory, val container: Container,
 
     override fun stillValid(player: Player): Boolean {
         return this.container.stillValid(player)
+    }
+
+    private class InputSlot(container: Container, slot: Int, x: Int, y: Int) : Slot(container, slot, x, y) {
+        override fun mayPlace(stack: ItemStack): Boolean {
+            return stack.`is`(CrimeUtilS5.CURABLE_TAG) && !stack.has(CrimecraftItemComponents.CURED)
+        }
     }
 
     private class FuelSlot(container: Container, slot: Int, x: Int, y: Int) : Slot(container, slot, x, y) {
