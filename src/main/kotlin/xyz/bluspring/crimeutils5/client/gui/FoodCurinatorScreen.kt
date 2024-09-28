@@ -9,6 +9,13 @@ import xyz.bluspring.crimeutils5.CrimeUtilS5
 import xyz.bluspring.crimeutils5.block.FoodCurinatorMenu
 
 class FoodCurinatorScreen(menu: FoodCurinatorMenu, inventory: Inventory, title: Component) : AbstractContainerScreen<FoodCurinatorMenu>(menu, inventory, title) {
+    override fun init() {
+        super.init()
+
+        this.titleLabelX = this.imageWidth / 2 - (this.font.width(this.title) / 2)
+        this.inventoryLabelY = this.imageHeight - 92
+    }
+
     override fun renderBg(guiGraphics: GuiGraphics, partialTick: Float, mouseX: Int, mouseY: Int) {
         guiGraphics.blit(BACKGROUND, leftPos, topPos, 0, 0, imageWidth, imageHeight)
 
