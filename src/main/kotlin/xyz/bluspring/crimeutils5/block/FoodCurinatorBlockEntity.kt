@@ -154,7 +154,7 @@ class FoodCurinatorBlockEntity(pos: BlockPos, state: BlockState) : BaseContainer
                 (outputStack.isEmpty || (ItemStack.isSameItem(inputStack, outputStack) && outputStack.count < outputStack.maxStackSize))
             ) {
                 // update fuel ticks
-                if (!fuelStack.isEmpty && fuelTicks <= 0) {
+                if (!fuelStack.isEmpty && fuelTicks <= 0 && waterAmount > 0 && copperTicks > 0) {
                     val fuel = FuelRegistry.INSTANCE.get(fuelStack.item)
 
                     if (fuel != null) {
