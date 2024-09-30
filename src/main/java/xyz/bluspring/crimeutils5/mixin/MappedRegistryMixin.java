@@ -3,7 +3,6 @@ package xyz.bluspring.crimeutils5.mixin;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.llamalad7.mixinextras.sugar.Local;
-import com.mojang.serialization.Lifecycle;
 import it.unimi.dsi.fastutil.objects.ObjectList;
 import net.minecraft.core.*;
 import net.minecraft.resources.ResourceKey;
@@ -11,7 +10,6 @@ import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import xyz.bluspring.crimeutils5.Workarounds;
 
@@ -26,10 +24,10 @@ public class MappedRegistryMixin<T> {
     @Shadow @Nullable private Map<T, Holder.Reference<T>> unregisteredIntrusiveHolders;
     @Unique private Map<Holder.Reference<T>, Throwable> fuckOff = new HashMap<>();
 
-    @Inject(method = "<init>(Lnet/minecraft/resources/ResourceKey;Lcom/mojang/serialization/Lifecycle;Z)V", at = @At("TAIL"))
+    /*@Inject(method = "<init>(Lnet/minecraft/resources/ResourceKey;Lcom/mojang/serialization/Lifecycle;Z)V", at = @At("TAIL"))
     private void useForcedTracingMap(ResourceKey<T> key, Lifecycle registryLifecycle, boolean hasIntrusiveHolders, CallbackInfo ci) {
         this.byId = new Workarounds.ForcedTracedObjectMap<>(256);
-    }
+    }*/
 
     @Inject(method = "register", at = @At("TAIL"))
     private void storeIdDump(ResourceKey<T> key, T value, RegistrationInfo registrationInfo, CallbackInfoReturnable<Holder.Reference<T>> cir, @Local int id) {
