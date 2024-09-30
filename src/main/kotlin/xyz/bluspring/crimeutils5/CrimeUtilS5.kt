@@ -22,6 +22,7 @@ import net.minecraft.world.level.storage.loot.entries.LootItem
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator
+import org.slf4j.LoggerFactory
 import xyz.bluspring.crimeutils5.block.FoodCurinatorBlock
 import xyz.bluspring.crimeutils5.block.FoodCurinatorBlockEntity
 import xyz.bluspring.crimeutils5.block.FoodCurinatorMenu
@@ -103,6 +104,7 @@ class CrimeUtilS5 : ModInitializer {
 
     companion object {
         const val MOD_ID = "crimecraft"
+        val logger = LoggerFactory.getLogger(CrimeUtilS5::class.java)
 
         fun id(name: String): ResourceLocation {
             return ResourceLocation.fromNamespaceAndPath(MOD_ID, name)
