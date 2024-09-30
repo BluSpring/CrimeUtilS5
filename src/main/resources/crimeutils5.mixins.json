@@ -6,6 +6,8 @@
     "mixins": [
         "ItemMixin",
         "ItemStackMixin",
+        "MappedRegistryAccessor",
+        "MappedRegistryMixin",
         "SuspiciousEffectHolderMixin"
     ],
     "client": [

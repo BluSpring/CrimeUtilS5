@@ -18,6 +18,8 @@ public interface SuspiciousEffectHolderMixin {
      */
     @Overwrite
     static List<SuspiciousEffectHolder> getAllEffectHolders() {
+        CrimeUtilS5.Companion.validateHolders();
+
         var list = new LinkedList<SuspiciousEffectHolder>();
 
         for (ResourceLocation id : BuiltInRegistries.ITEM.keySet()) {

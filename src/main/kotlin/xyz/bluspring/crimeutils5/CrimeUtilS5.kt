@@ -27,6 +27,7 @@ import xyz.bluspring.crimeutils5.block.FoodCurinatorBlock
 import xyz.bluspring.crimeutils5.block.FoodCurinatorBlockEntity
 import xyz.bluspring.crimeutils5.block.FoodCurinatorMenu
 import xyz.bluspring.crimeutils5.components.CrimecraftItemComponents
+import xyz.bluspring.crimeutils5.mixin.MappedRegistryAccessor
 
 class CrimeUtilS5 : ModInitializer {
     val STELLARIS_METEOR = ResourceLocation.fromNamespaceAndPath("stellaris", "chests/meteor")
@@ -119,5 +120,20 @@ class CrimeUtilS5 : ModInitializer {
         val FOOD_CURINATOR_MENU = Registry.register(BuiltInRegistries.MENU, id("food_curinator"), MenuType<FoodCurinatorMenu>(::FoodCurinatorMenu, FeatureFlagSet.of()))
 
         val CURABLE_TAG = TagKey.create(Registries.ITEM, id("curable"))
+
+        fun validateHolders() {
+            for ((i, reference) in (BuiltInRegistries.ITEM as MappedRegistryAccessor<Item>).byId.withIndex()) {
+                if (reference == null) {
+                    logger.error("Index $i's holder is null!")
+                    logger.error("Last bound to: ${Workarounds.fuckThatsAwful.get(i).location()}")
+                }
+            }
+
+            for ((loc, ref) in (BuiltInRegistries.ITEM as MappedRegistryAccessor<Item>).byLocation.entries) {
+                if (ref == null) {
+                    logger.error("Item $loc has a null holder!")
+                }
+            }
+        }
     }
 }
