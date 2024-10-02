@@ -21,7 +21,7 @@ public class ItemMixin {
         var result = original.call(instance, level, food, foodProperties);
 
         if (!isCured) {
-            instance.addEffect(new MobEffectInstance(MobEffects.POISON, 10 * 20));
+            instance.addEffect(new MobEffectInstance(MobEffects.POISON, 5 * 20));
             instance.addEffect(new MobEffectInstance(MobEffects.HUNGER, 10 * 20));
         }
 
