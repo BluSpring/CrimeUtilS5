@@ -1,0 +1,10 @@
+{
+    "meteor_strike": {
+        "sounds": [
+            {
+                "name": "crimecraft:meteor_strike",
+                "stream": true
+            }
+        ]
+    }
+}
