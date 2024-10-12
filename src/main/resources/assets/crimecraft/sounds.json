@@ -6,5 +6,13 @@
                 "stream": true
             }
         ]
+    },
+    "ringing": {
+        "sounds": [
+            {
+                "name": "crimecraft:ringing",
+                "stream": true
+            }
+        ]
     }
 }

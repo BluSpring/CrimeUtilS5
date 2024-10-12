@@ -1,0 +1,1 @@
+playsound crimecraft:ringing master @a ~ ~ ~ 0.7 1 0.7
