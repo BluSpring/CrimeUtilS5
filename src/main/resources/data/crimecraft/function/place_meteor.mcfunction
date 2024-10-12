@@ -1,4 +1,4 @@
-place structure stellaris:meteor
+execute at @e[tag=marker_pos] run place structure stellaris:meteor
 kill @e[tag=meteor]
 title @a times 0 150 35
 title @a title {"text":"\ue001","font":"crimecraft:screen"}
