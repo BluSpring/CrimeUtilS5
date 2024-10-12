@@ -15,4 +15,4 @@ stopsound @a weather
 summon marker ~ ~ ~ {Tags:["meteor_pos"]}
 playsound crimecraft:meteor_strike master @a ~ ~ ~ 15 1 1
 
-schedule function crimecraft:place_meteor 60
+schedule function crimecraft:place_meteor 50
