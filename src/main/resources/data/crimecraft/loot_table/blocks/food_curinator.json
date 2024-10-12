@@ -11,11 +11,11 @@
             "entries": [
                 {
                     "type": "minecraft:item",
-                    "name": "minecraft:food_curinator"
+                    "name": "crimecraft:food_curinator"
                 }
             ],
             "rolls": 1.0
         }
     ],
-    "random_sequence": "minecraft:blocks/food_curinator"
+    "random_sequence": "crimecraft:blocks/food_curinator"
 }
