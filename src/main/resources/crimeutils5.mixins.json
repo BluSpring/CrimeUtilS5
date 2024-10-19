@@ -8,7 +8,9 @@
         "ItemStackMixin",
         "MappedRegistryAccessor",
         "MappedRegistryMixin",
-        "SuspiciousEffectHolderMixin"
+        "SuspiciousEffectHolderMixin",
+        "fixes.ReplayGamePacketHandlerMixin",
+        "fixes.SynchedEntityDataAccessor"
     ],
     "client": [
         "GuiGraphicsMixin",

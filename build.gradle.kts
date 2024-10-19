@@ -56,6 +56,7 @@ dependencies {
     modImplementation("net.fabricmc.fabric-api:fabric-api:${project.property("fabric_version")}")
 
     modImplementation("maven.modrinth:chunky:dPliWter")
+    modCompileOnly("maven.modrinth:flashback:0.11.0")
 }
 
 tasks.processResources {
