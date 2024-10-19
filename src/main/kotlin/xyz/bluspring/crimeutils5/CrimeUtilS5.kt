@@ -121,7 +121,7 @@ class CrimeUtilS5 : ModInitializer {
         }
 
         ServerPlayConnectionEvents.DISCONNECT.register { handler, server ->
-            if (server.playerList.players.isEmpty()) {
+            if (server.playerList.players.none { it.uuid != handler.player.uuid }) {
                 logger.info("No players are online, restarting Chunky.")
                 val chunky = ChunkyProvider.get()
                 val loadTasks = chunky.taskLoader.loadTasks()
