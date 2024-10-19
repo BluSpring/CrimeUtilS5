@@ -3,6 +3,7 @@ package xyz.bluspring.crimeutils5
 import net.fabricmc.api.ModInitializer
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents
 import net.fabricmc.fabric.api.loot.v3.LootTableEvents
+import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents
 import net.minecraft.core.Registry
 import net.minecraft.core.registries.BuiltInRegistries
 import net.minecraft.core.registries.Registries
@@ -22,6 +23,7 @@ import net.minecraft.world.level.storage.loot.entries.LootItem
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator
+import org.popcraft.chunky.ChunkyProvider
 import org.slf4j.LoggerFactory
 import xyz.bluspring.crimeutils5.block.FoodCurinatorBlock
 import xyz.bluspring.crimeutils5.block.FoodCurinatorBlockEntity
@@ -100,6 +102,41 @@ class CrimeUtilS5 : ModInitializer {
 
         ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.FUNCTIONAL_BLOCKS).register { entries ->
             entries.accept(FOOD_CURINATOR_ITEM)
+        }
+
+        var isChunkyRunning = true
+
+        ServerPlayConnectionEvents.JOIN.register { handler, _, server ->
+            if (isChunkyRunning) {
+                isChunkyRunning = false
+                logger.info("Player detected, pausing Chunky.")
+
+                val chunky = ChunkyProvider.get()
+                val genTasks = chunky.generationTasks
+
+                for (generationTask in genTasks.values) {
+                    generationTask.stop(false)
+                }
+            }
+        }
+
+        ServerPlayConnectionEvents.DISCONNECT.register { handler, server ->
+            if (server.playerList.players.isEmpty()) {
+                logger.info("No players are online, restarting Chunky.")
+                val chunky = ChunkyProvider.get()
+                val loadTasks = chunky.taskLoader.loadTasks()
+
+                val genTasks = chunky.generationTasks
+                for (genTask in loadTasks.filter { !it.isCancelled }) {
+                    val world = genTask.selection.world()
+                    if (!genTasks.containsKey(world.name)) {
+                        genTasks[world.name] = genTask
+                        chunky.scheduler.runTask(genTask)
+                    }
+                }
+
+                isChunkyRunning = true
+            }
         }
     }
 

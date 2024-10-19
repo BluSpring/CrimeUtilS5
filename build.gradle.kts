@@ -31,6 +31,15 @@ repositories {
     // See https://docs.gradle.org/current/userguide/declaring_repositories.html
     // for more information about repositories.
     maven("https://maven.parchmentmc.org")
+
+    exclusiveContent {
+        forRepository {
+            maven("https://api.modrinth.com/maven")
+        }
+        filter {
+            includeGroup("maven.modrinth")
+        }
+    }
 }
 
 dependencies {
@@ -45,6 +54,8 @@ dependencies {
 
     // Fabric API. This is technically optional, but you probably want it anyway.
     modImplementation("net.fabricmc.fabric-api:fabric-api:${project.property("fabric_version")}")
+
+    modImplementation("maven.modrinth:chunky:dPliWter")
 }
 
 tasks.processResources {
