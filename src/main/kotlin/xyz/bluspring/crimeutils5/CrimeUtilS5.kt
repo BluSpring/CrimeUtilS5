@@ -3,7 +3,6 @@ package xyz.bluspring.crimeutils5
 import net.fabricmc.api.ModInitializer
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents
 import net.fabricmc.fabric.api.loot.v3.LootTableEvents
-import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents
 import net.minecraft.core.Registry
 import net.minecraft.core.registries.BuiltInRegistries
 import net.minecraft.core.registries.Registries
@@ -23,7 +22,6 @@ import net.minecraft.world.level.storage.loot.entries.LootItem
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator
-import org.popcraft.chunky.ChunkyProvider
 import org.slf4j.LoggerFactory
 import xyz.bluspring.crimeutils5.block.FoodCurinatorBlock
 import xyz.bluspring.crimeutils5.block.FoodCurinatorBlockEntity
@@ -104,7 +102,7 @@ class CrimeUtilS5 : ModInitializer {
             entries.accept(FOOD_CURINATOR_ITEM)
         }
 
-        var isChunkyRunning = true
+        /*var isChunkyRunning = true
 
         ServerPlayConnectionEvents.JOIN.register { handler, _, server ->
             if (isChunkyRunning) {
@@ -137,7 +135,7 @@ class CrimeUtilS5 : ModInitializer {
 
                 isChunkyRunning = true
             }
-        }
+        }*/
     }
 
     companion object {
