@@ -1,0 +1,11 @@
+{
+    "replace": false,
+    "values": [
+        "ninja-armor:wooden_katana",
+        "ninja-armor:stone_katana",
+        "ninja-armor:golden_katana",
+        "ninja-armor:iron_katana",
+        "ninja-armor:diamond_katana",
+        "ninja-armor:netherite_katana"
+    ]
+}

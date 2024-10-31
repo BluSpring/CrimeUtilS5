@@ -57,6 +57,13 @@ dependencies {
 
     modImplementation("maven.modrinth:chunky:dPliWter")
     modCompileOnly("maven.modrinth:flashback:0.11.0")
+
+    modImplementation("maven.modrinth:sodium:mc1.21.1-0.6.0-beta.4-fabric")
+    modImplementation("maven.modrinth:iris:1.8.0-beta.4+1.21-fabric")
+    //modImplementation(files("libs/DistantHorizons-fabric-2.3.0-a-dev-1.21.1.jar"))
+
+    modImplementation("maven.modrinth:ninja-armor:1.3.0+1.21")
+    modImplementation("maven.modrinth:bamboo-combat:1.21-1.0.5")
 }
 
 tasks.processResources {

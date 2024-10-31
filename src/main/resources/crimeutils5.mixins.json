@@ -10,7 +10,11 @@
         "MappedRegistryMixin",
         "SuspiciousEffectHolderMixin",
         "fixes.ReplayGamePacketHandlerMixin",
-        "fixes.SynchedEntityDataAccessor"
+        "fixes.SynchedEntityDataAccessor",
+        "weapons.ItemsMixin",
+        "weapons.MaceItemMixin",
+        "weapons.NinjaModItemsMixin",
+        "weapons.TridentItemMixin"
     ],
     "client": [
         "GuiGraphicsMixin",
