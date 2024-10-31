@@ -11,6 +11,7 @@
         "SuspiciousEffectHolderMixin",
         "fixes.ReplayGamePacketHandlerMixin",
         "fixes.SynchedEntityDataAccessor",
+        "howl.TamableAnimalMixin",
         "weapons.ItemsMixin",
         "weapons.MaceItemMixin",
         "weapons.NinjaModItemsMixin",
@@ -21,7 +22,10 @@
         "MipmapGeneratorMixin",
         "SpriteContentsMixin",
         "SpriteContentsMixin$InterpolationDataMixin",
-        "SpriteLoaderMixin"
+        "SpriteLoaderMixin",
+        "howl.EntityRendererMixin",
+        "howl.WolfModelAccessor",
+        "howl.WolfRendererMixin"
     ],
     "injectors": {
         "defaultRequire": 1

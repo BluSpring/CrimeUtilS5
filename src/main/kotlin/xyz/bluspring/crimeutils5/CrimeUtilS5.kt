@@ -27,6 +27,7 @@ import xyz.bluspring.crimeutils5.block.FoodCurinatorBlock
 import xyz.bluspring.crimeutils5.block.FoodCurinatorBlockEntity
 import xyz.bluspring.crimeutils5.block.FoodCurinatorMenu
 import xyz.bluspring.crimeutils5.components.CrimecraftItemComponents
+import xyz.bluspring.crimeutils5.howl.HowlTheDog
 import xyz.bluspring.crimeutils5.mixin.MappedRegistryAccessor
 
 class CrimeUtilS5 : ModInitializer {
@@ -34,6 +35,7 @@ class CrimeUtilS5 : ModInitializer {
 
     override fun onInitialize() {
         CrimecraftItemComponents.init()
+        HowlTheDog.init()
 
         LootTableEvents.MODIFY.register { key, builder, source, registries ->
             if (key.location() == STELLARIS_METEOR) {
