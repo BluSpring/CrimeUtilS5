@@ -10,10 +10,7 @@ import net.minecraft.resources.ResourceLocation
 import net.minecraft.tags.TagKey
 import net.minecraft.world.flag.FeatureFlagSet
 import net.minecraft.world.inventory.MenuType
-import net.minecraft.world.item.BlockItem
-import net.minecraft.world.item.CreativeModeTabs
-import net.minecraft.world.item.Item
-import net.minecraft.world.item.Items
+import net.minecraft.world.item.*
 import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.block.entity.BlockEntityType
 import net.minecraft.world.level.storage.loot.LootPool
@@ -170,6 +167,28 @@ class CrimeUtilS5 : ModInitializer {
                 if (ref == null) {
                     logger.error("Item $loc has a null holder!")
                 }
+            }
+        }
+
+        fun getDamage(tier: Tier, original: Int, wood: Int, stone: Int, iron: Int, diamond: Int, netherite: Int): Int {
+            return when (tier) {
+                Tiers.WOOD -> wood
+                Tiers.STONE, Tiers.GOLD -> stone
+                Tiers.IRON -> iron
+                Tiers.DIAMOND -> diamond
+                Tiers.NETHERITE -> netherite
+                else -> original
+            }
+        }
+
+        fun getDamage(tier: Tier, original: Float, wood: Float, stone: Float, iron: Float, diamond: Float, netherite: Float): Float {
+            return when (tier) {
+                Tiers.WOOD -> wood
+                Tiers.STONE, Tiers.GOLD -> stone
+                Tiers.IRON -> iron
+                Tiers.DIAMOND -> diamond
+                Tiers.NETHERITE -> netherite
+                else -> original
             }
         }
     }
