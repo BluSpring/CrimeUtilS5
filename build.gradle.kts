@@ -64,6 +64,7 @@ dependencies {
 
     modImplementation("maven.modrinth:ninja-armor:1.3.0+1.21")
     modImplementation("maven.modrinth:bamboo-combat:1.21-1.0.5")
+    modImplementation("maven.modrinth:travelersbackpack:1.21.1-10.1.3")
 }
 
 tasks.processResources {
