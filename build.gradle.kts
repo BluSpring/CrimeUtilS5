@@ -40,6 +40,19 @@ repositories {
             includeGroup("maven.modrinth")
         }
     }
+
+    maven("https://cursemaven.com") {
+        content {
+            includeGroup("curse.maven")
+        }
+    }
+
+    maven { url = uri("https://maven.architectury.dev/") }
+    maven { url = uri("https://maven.shedaniel.me/") }
+
+    maven("https://maven.ladysnake.org/releases") {
+        name = "Ladysnake Mods"
+    }
 }
 
 dependencies {
@@ -65,6 +78,19 @@ dependencies {
     modImplementation("maven.modrinth:ninja-armor:1.3.0+1.21")
     modImplementation("maven.modrinth:bamboo-combat:1.21-1.0.5")
     modImplementation("maven.modrinth:travelersbackpack:1.21.1-10.1.3")
+
+    val ccaVersion = "6.1.1"
+
+    modImplementation("maven.modrinth:polymorph:AGMyBSJE")
+    modImplementation("maven.modrinth:stellaris:1.2.0-beta1")
+    modApi("curse.maven:reborncore-237903:5776056")
+    modApi("curse.maven:techreborn-233564:5776057")
+    modApi("dev.architectury:architectury-fabric:13.0.8")
+    modApi("teamreborn:energy:4.1.0")
+    modApi("me.shedaniel.cloth:cloth-config-fabric:15.0.140")
+    modImplementation("org.ladysnake.cardinal-components-api:cardinal-components-base:$ccaVersion")
+    modImplementation("org.ladysnake.cardinal-components-api:cardinal-components-block:$ccaVersion")
+    modImplementation("org.ladysnake.cardinal-components-api:cardinal-components-entity:$ccaVersion")
 }
 
 tasks.processResources {

@@ -15,6 +15,9 @@
         ],
         "main": [
             "xyz.bluspring.crimeutils5.CrimeUtilS5"
+        ],
+        "cardinal-components": [
+            "xyz.bluspring.crimeutils5.compat.polymorph.CrimecraftPolymorphComponents"
         ]
     },
     "mixins": [

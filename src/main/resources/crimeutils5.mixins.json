@@ -9,6 +9,7 @@
         "MappedRegistryAccessor",
         "MappedRegistryMixin",
         "SuspiciousEffectHolderMixin",
+        "compat.techreborn.ElectricFurnaceBlockEntityAccessor",
         "fixes.ReplayGamePacketHandlerMixin",
         "fixes.SynchedEntityDataAccessor",
         "howl.TamableAnimalMixin",

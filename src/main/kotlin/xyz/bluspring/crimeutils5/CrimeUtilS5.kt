@@ -1,5 +1,6 @@
 package xyz.bluspring.crimeutils5
 
+import com.illusivesoulworks.polymorph.api.PolymorphApi
 import net.fabricmc.api.ModInitializer
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents
 import net.fabricmc.fabric.api.loot.v3.LootTableEvents
@@ -23,9 +24,11 @@ import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator
 import org.slf4j.LoggerFactory
+import techreborn.blockentity.machine.tier1.ElectricFurnaceBlockEntity
 import xyz.bluspring.crimeutils5.block.FoodCurinatorBlock
 import xyz.bluspring.crimeutils5.block.FoodCurinatorBlockEntity
 import xyz.bluspring.crimeutils5.block.FoodCurinatorMenu
+import xyz.bluspring.crimeutils5.compat.polymorph.TRElectricFurnaceDataComponent
 import xyz.bluspring.crimeutils5.components.CrimecraftItemComponents
 import xyz.bluspring.crimeutils5.howl.HowlTheDog
 import xyz.bluspring.crimeutils5.mixin.MappedRegistryAccessor
@@ -36,6 +39,14 @@ class CrimeUtilS5 : ModInitializer {
     override fun onInitialize() {
         CrimecraftItemComponents.init()
         HowlTheDog.init()
+
+        PolymorphApi.getInstance().registerBlockEntity { blockEntity ->
+            if (blockEntity is ElectricFurnaceBlockEntity) {
+                return@registerBlockEntity TRElectricFurnaceDataComponent(blockEntity)
+            }
+
+            null
+        }
 
         LootTableEvents.MODIFY.register { key, builder, source, registries ->
             if (key.location() == STELLARIS_METEOR) {
