@@ -1,4 +1,4 @@
-package xyz.bluspring.crimeutils5.mixin;
+package xyz.bluspring.crimeutils5.mixin.fixes.mipmap;
 
 import com.llamalad7.mixinextras.sugar.Local;
 import net.minecraft.client.renderer.texture.SpriteLoader;

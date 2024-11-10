@@ -1,4 +1,4 @@
-package xyz.bluspring.crimeutils5.mixin.fixes;
+package xyz.bluspring.crimeutils5.mixin.fixes.flashback;
 
 import com.llamalad7.mixinextras.injector.v2.WrapWithCondition;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;

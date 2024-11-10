@@ -1,4 +1,4 @@
-package xyz.bluspring.crimeutils5.mixin.weapons;
+package xyz.bluspring.crimeutils5.mixin.tweaks.weapons;
 
 import net.minecraft.world.item.MaceItem;
 import org.spongepowered.asm.mixin.Mixin;

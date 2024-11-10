@@ -1,4 +1,4 @@
-package xyz.bluspring.crimeutils5.mixin.weapons;
+package xyz.bluspring.crimeutils5.mixin.tweaks.weapons;
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;

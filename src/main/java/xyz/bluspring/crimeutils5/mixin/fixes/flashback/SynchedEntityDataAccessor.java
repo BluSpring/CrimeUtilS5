@@ -1,4 +1,4 @@
-package xyz.bluspring.crimeutils5.mixin.fixes;
+package xyz.bluspring.crimeutils5.mixin.fixes.flashback;
 
 import net.minecraft.network.syncher.SynchedEntityData;
 import org.spongepowered.asm.mixin.Mixin;

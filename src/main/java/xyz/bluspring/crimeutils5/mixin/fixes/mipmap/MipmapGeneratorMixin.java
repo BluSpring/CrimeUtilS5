@@ -1,4 +1,4 @@
-package xyz.bluspring.crimeutils5.mixin;
+package xyz.bluspring.crimeutils5.mixin.fixes.mipmap;
 
 import com.mojang.blaze3d.platform.NativeImage;
 import net.minecraft.client.renderer.texture.MipmapGenerator;
