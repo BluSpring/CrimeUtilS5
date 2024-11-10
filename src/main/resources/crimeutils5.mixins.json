@@ -25,9 +25,9 @@
     ],
     "client": [
         "GuiGraphicsMixin",
-        "SpriteContentsMixin$InterpolationDataMixin",
         "fixes.mipmap.MipmapGeneratorMixin",
         "fixes.mipmap.SpriteContentsMixin",
+        "fixes.mipmap.SpriteContentsMixin$InterpolationDataMixin",
         "fixes.mipmap.SpriteLoaderMixin",
         "howl.EntityRendererMixin",
         "howl.WolfModelAccessor",
