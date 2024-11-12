@@ -28,6 +28,7 @@
         "fixes.mipmap.SpriteContentsMixin",
         "fixes.mipmap.SpriteContentsMixin$InterpolationDataMixin",
         "fixes.mipmap.SpriteLoaderMixin",
+        "fixes.profiling.LevelRendererMixin",
         "fixes.rendering_optimization.stellaris.GlobeBlockRendererMixin",
         "tweaks.howl.EntityRendererMixin",
         "tweaks.howl.WolfModelAccessor",

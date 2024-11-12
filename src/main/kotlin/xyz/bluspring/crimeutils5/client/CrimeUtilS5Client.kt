@@ -13,6 +13,7 @@ import net.minecraft.resources.ResourceLocation
 import techreborn.client.gui.GuiElectricFurnace
 import xyz.bluspring.crimeutils5.CrimeUtilS5
 import xyz.bluspring.crimeutils5.client.gui.FoodCurinatorScreen
+import xyz.bluspring.crimeutils5.client.profiling.RenderProfilingHelper
 import xyz.bluspring.crimeutils5.client.renderer.FoodCurinatorRenderer
 import xyz.bluspring.crimeutils5.entity.HowlModel
 
@@ -35,6 +36,8 @@ class CrimeUtilS5Client : ClientModInitializer {
 
             null
         }
+
+        RenderProfilingHelper.init()
     }
 
     companion object {
