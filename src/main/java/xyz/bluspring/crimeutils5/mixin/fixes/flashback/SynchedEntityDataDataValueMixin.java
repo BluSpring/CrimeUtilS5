@@ -28,7 +28,7 @@ public class SynchedEntityDataDataValueMixin<T> {
             original.call(instance, buf, o);
         } catch (Throwable e) {
             CrimeUtilS5.Companion.getLogger().error("Failed to encode data value for serializer {} (internal: {}, serialized: {}), provided value: {}", this.serializer, this.id, id, this.value);
-            e.printStackTrace();
+            throw e;
         }
     }
 }
