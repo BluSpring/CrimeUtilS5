@@ -1,4 +1,4 @@
-package xyz.bluspring.crimeutils5.mixin.howl;
+package xyz.bluspring.crimeutils5.mixin.tweaks.howl;
 
 import net.minecraft.client.model.WolfModel;
 import net.minecraft.client.model.geom.ModelPart;

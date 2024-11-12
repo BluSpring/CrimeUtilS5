@@ -1,4 +1,4 @@
-package xyz.bluspring.crimeutils5.howl
+package xyz.bluspring.crimeutils5.entity
 
 interface HowlEntity {
     val ccVersion: Int

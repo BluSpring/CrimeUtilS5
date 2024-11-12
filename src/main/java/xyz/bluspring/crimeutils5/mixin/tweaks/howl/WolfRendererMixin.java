@@ -1,4 +1,4 @@
-package xyz.bluspring.crimeutils5.mixin.howl;
+package xyz.bluspring.crimeutils5.mixin.tweaks.howl;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -11,8 +11,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import xyz.bluspring.crimeutils5.howl.HowlRenderer;
-import xyz.bluspring.crimeutils5.howl.HowlTheDog;
+import xyz.bluspring.crimeutils5.entity.HowlRenderer;
+import xyz.bluspring.crimeutils5.entity.HowlTheDog;
 
 @Mixin(WolfRenderer.class)
 public class WolfRendererMixin {

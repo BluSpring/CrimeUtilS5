@@ -1,4 +1,4 @@
-package xyz.bluspring.crimeutils5.howl
+package xyz.bluspring.crimeutils5.entity
 
 import net.minecraft.client.model.WolfModel
 import net.minecraft.client.model.geom.ModelPart
@@ -9,7 +9,7 @@ import net.minecraft.client.model.geom.builders.LayerDefinition
 import net.minecraft.client.model.geom.builders.MeshDefinition
 import net.minecraft.util.Mth
 import net.minecraft.world.entity.animal.Wolf
-import xyz.bluspring.crimeutils5.mixin.howl.WolfModelAccessor
+import xyz.bluspring.crimeutils5.mixin.tweaks.howl.WolfModelAccessor
 
 
 class HowlModel<T : Wolf>(root: ModelPart) : WolfModel<T>(root) {

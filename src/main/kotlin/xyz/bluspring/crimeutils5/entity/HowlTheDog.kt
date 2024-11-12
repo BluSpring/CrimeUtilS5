@@ -1,4 +1,4 @@
-package xyz.bluspring.crimeutils5.howl
+package xyz.bluspring.crimeutils5.entity
 
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents
 import net.fabricmc.fabric.api.networking.v1.EntityTrackingEvents

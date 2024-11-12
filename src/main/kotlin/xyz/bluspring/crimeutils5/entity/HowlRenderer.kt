@@ -1,4 +1,4 @@
-package xyz.bluspring.crimeutils5.howl
+package xyz.bluspring.crimeutils5.entity
 
 import com.mojang.blaze3d.vertex.PoseStack
 import net.minecraft.client.renderer.MultiBufferSource
@@ -8,8 +8,8 @@ import net.minecraft.resources.ResourceLocation
 import net.minecraft.util.FastColor.ARGB32
 import net.minecraft.world.entity.animal.Wolf
 import xyz.bluspring.crimeutils5.client.CrimeUtilS5Client
-import xyz.bluspring.crimeutils5.howl.layers.HowlCollarLayer
-import xyz.bluspring.crimeutils5.howl.layers.HowlEyesLayer
+import xyz.bluspring.crimeutils5.entity.layers.HowlCollarLayer
+import xyz.bluspring.crimeutils5.entity.layers.HowlEyesLayer
 
 class HowlRenderer(context: EntityRendererProvider.Context) : MobRenderer<Wolf, HowlModel<Wolf>>(context, HowlModel(context.bakeLayer(CrimeUtilS5Client.HOWL_LAYER)), 1.75F) {
     init {

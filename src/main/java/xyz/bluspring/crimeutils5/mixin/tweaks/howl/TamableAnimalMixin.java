@@ -1,4 +1,4 @@
-package xyz.bluspring.crimeutils5.mixin.howl;
+package xyz.bluspring.crimeutils5.mixin.tweaks.howl;
 
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.EntityType;
@@ -11,8 +11,8 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import xyz.bluspring.crimeutils5.howl.HowlEntity;
-import xyz.bluspring.crimeutils5.howl.HowlTheDog;
+import xyz.bluspring.crimeutils5.entity.HowlEntity;
+import xyz.bluspring.crimeutils5.entity.HowlTheDog;
 
 @Mixin(TamableAnimal.class)
 public abstract class TamableAnimalMixin extends Animal implements HowlEntity {

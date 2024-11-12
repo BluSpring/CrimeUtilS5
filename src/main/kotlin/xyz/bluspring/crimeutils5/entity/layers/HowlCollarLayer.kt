@@ -1,4 +1,4 @@
-package xyz.bluspring.crimeutils5.howl.layers
+package xyz.bluspring.crimeutils5.entity.layers
 
 
 import com.mojang.blaze3d.vertex.PoseStack
@@ -7,7 +7,7 @@ import net.minecraft.client.renderer.entity.RenderLayerParent
 import net.minecraft.client.renderer.entity.layers.RenderLayer
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.entity.animal.Wolf
-import xyz.bluspring.crimeutils5.howl.HowlModel
+import xyz.bluspring.crimeutils5.entity.HowlModel
 
 class HowlCollarLayer(renderLayerParent: RenderLayerParent<Wolf, HowlModel<Wolf>>) : RenderLayer<Wolf, HowlModel<Wolf>>(renderLayerParent) {
     override fun render(poseStack: PoseStack, multiBufferSource: MultiBufferSource, i: Int, wolf: Wolf,

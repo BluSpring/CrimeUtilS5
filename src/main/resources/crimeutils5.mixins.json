@@ -13,9 +13,9 @@
         "compat.techreborn.ElectricFurnaceBlockEntityAccessor",
         "fixes.flashback.ReplayGamePacketHandlerMixin",
         "fixes.flashback.SynchedEntityDataAccessor",
-        "howl.TamableAnimalMixin",
         "tweaks.backpacks.BackpackAbilitiesMixin",
         "tweaks.backpacks.LivingEntityMixin",
+        "tweaks.howl.TamableAnimalMixin",
         "tweaks.weapons.ItemsMixin",
         "tweaks.weapons.MaceItemMixin",
         "tweaks.weapons.NinjaModItemsMixin",
@@ -29,9 +29,9 @@
         "fixes.mipmap.SpriteContentsMixin$InterpolationDataMixin",
         "fixes.mipmap.SpriteLoaderMixin",
         "fixes.rendering_optimization.stellaris.GlobeBlockRendererMixin",
-        "howl.EntityRendererMixin",
-        "howl.WolfModelAccessor",
-        "howl.WolfRendererMixin"
+        "tweaks.howl.EntityRendererMixin",
+        "tweaks.howl.WolfModelAccessor",
+        "tweaks.howl.WolfRendererMixin"
     ],
     "injectors": {
         "defaultRequire": 1

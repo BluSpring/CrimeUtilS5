@@ -1,11 +1,11 @@
-package xyz.bluspring.crimeutils5.howl.layers
+package xyz.bluspring.crimeutils5.entity.layers
 
 import net.minecraft.client.renderer.RenderType
 import net.minecraft.client.renderer.entity.RenderLayerParent
 import net.minecraft.client.renderer.entity.layers.EyesLayer
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.entity.animal.Wolf
-import xyz.bluspring.crimeutils5.howl.HowlModel
+import xyz.bluspring.crimeutils5.entity.HowlModel
 
 class HowlEyesLayer(renderLayerParent: RenderLayerParent<Wolf, HowlModel<Wolf>>) : EyesLayer<Wolf, HowlModel<Wolf>>(renderLayerParent) {
     override fun renderType(): RenderType {

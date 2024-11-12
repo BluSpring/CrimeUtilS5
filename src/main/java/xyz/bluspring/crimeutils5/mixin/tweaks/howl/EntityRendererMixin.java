@@ -1,4 +1,4 @@
-package xyz.bluspring.crimeutils5.mixin.howl;
+package xyz.bluspring.crimeutils5.mixin.tweaks.howl;
 
 import com.llamalad7.mixinextras.sugar.Local;
 import net.minecraft.client.renderer.entity.EntityRenderer;
@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArgs;
 import org.spongepowered.asm.mixin.injection.invoke.arg.Args;
-import xyz.bluspring.crimeutils5.howl.HowlTheDog;
+import xyz.bluspring.crimeutils5.entity.HowlTheDog;
 
 @Mixin(EntityRenderer.class)
 public class EntityRendererMixin<T extends Entity> {

@@ -14,7 +14,7 @@ import techreborn.client.gui.GuiElectricFurnace
 import xyz.bluspring.crimeutils5.CrimeUtilS5
 import xyz.bluspring.crimeutils5.client.gui.FoodCurinatorScreen
 import xyz.bluspring.crimeutils5.client.renderer.FoodCurinatorRenderer
-import xyz.bluspring.crimeutils5.howl.HowlModel
+import xyz.bluspring.crimeutils5.entity.HowlModel
 
 class CrimeUtilS5Client : ClientModInitializer {
 

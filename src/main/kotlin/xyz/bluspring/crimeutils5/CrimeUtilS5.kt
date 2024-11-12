@@ -30,7 +30,7 @@ import xyz.bluspring.crimeutils5.block.FoodCurinatorBlockEntity
 import xyz.bluspring.crimeutils5.block.FoodCurinatorMenu
 import xyz.bluspring.crimeutils5.compat.polymorph.TRElectricFurnaceDataComponent
 import xyz.bluspring.crimeutils5.components.CrimecraftItemComponents
-import xyz.bluspring.crimeutils5.howl.HowlTheDog
+import xyz.bluspring.crimeutils5.entity.HowlTheDog
 import xyz.bluspring.crimeutils5.mixin.MappedRegistryAccessor
 
 class CrimeUtilS5 : ModInitializer {
