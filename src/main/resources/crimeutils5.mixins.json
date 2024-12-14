@@ -9,6 +9,7 @@
         "ItemStackMixin",
         "MappedRegistryAccessor",
         "MappedRegistryMixin",
+        "PlayerMixin",
         "SuspiciousEffectHolderMixin",
         "compat.techreborn.ElectricFurnaceBlockEntityAccessor",
         "fixes.flashback.ReplayGamePacketHandlerMixin",
