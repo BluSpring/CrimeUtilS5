@@ -82,7 +82,7 @@ dependencies {
     val ccaVersion = "6.1.1"
 
     modImplementation("maven.modrinth:polymorph:AGMyBSJE")
-    modImplementation("maven.modrinth:stellaris:1.2.0-beta1")
+    modImplementation("maven.modrinth:stellaris:1.2.0")
     modApi("curse.maven:reborncore-237903:5776056")
     modApi("curse.maven:techreborn-233564:5776057")
     modApi("dev.architectury:architectury-fabric:13.0.8")

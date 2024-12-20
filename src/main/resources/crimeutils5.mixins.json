@@ -14,6 +14,7 @@
         "compat.techreborn.ElectricFurnaceBlockEntityAccessor",
         "fixes.flashback.ReplayGamePacketHandlerMixin",
         "fixes.flashback.SynchedEntityDataAccessor",
+        "fixes.stellaris.MotorUpgradeMixin",
         "tweaks.backpacks.BackpackAbilitiesMixin",
         "tweaks.backpacks.LivingEntityMixin",
         "tweaks.howl.TamableAnimalMixin",
