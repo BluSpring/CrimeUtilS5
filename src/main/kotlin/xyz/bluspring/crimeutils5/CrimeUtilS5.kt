@@ -2,11 +2,18 @@ package xyz.bluspring.crimeutils5
 
 import com.illusivesoulworks.polymorph.api.PolymorphApi
 import net.fabricmc.api.ModInitializer
+import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents
 import net.fabricmc.fabric.api.loot.v3.LootTableEvents
+import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry
+import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking
+import net.minecraft.commands.Commands
 import net.minecraft.core.Registry
 import net.minecraft.core.registries.BuiltInRegistries
 import net.minecraft.core.registries.Registries
+import net.minecraft.network.chat.Component
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.tags.TagKey
 import net.minecraft.world.flag.FeatureFlagSet
@@ -32,6 +39,7 @@ import xyz.bluspring.crimeutils5.compat.polymorph.TRElectricFurnaceDataComponent
 import xyz.bluspring.crimeutils5.components.CrimecraftItemComponents
 import xyz.bluspring.crimeutils5.entity.HowlTheDog
 import xyz.bluspring.crimeutils5.mixin.MappedRegistryAccessor
+import xyz.bluspring.crimeutils5.network.RedSkyPacket
 
 class CrimeUtilS5 : ModInitializer {
     val STELLARIS_METEOR = ResourceLocation.fromNamespaceAndPath("stellaris", "chests/meteor")
@@ -115,6 +123,29 @@ class CrimeUtilS5 : ModInitializer {
             entries.accept(FOOD_CURINATOR_ITEM)
         }
 
+        ServerLifecycleEvents.SERVER_STOPPING.register {
+            useRedSky = false
+        }
+
+        ServerPlayConnectionEvents.JOIN.register { handler, _, _ ->
+            ServerPlayNetworking.send(handler.player, RedSkyPacket(useRedSky))
+        }
+
+        CommandRegistrationCallback.EVENT.register { dispatcher, _, _ ->
+            dispatcher.register(Commands.literal("toggleredsky").executes {
+                useRedSky = !useRedSky
+                it.source.sendSystemMessage(Component.literal("Red sky: $useRedSky"))
+
+                for (player in it.source.server.playerList.players) {
+                    ServerPlayNetworking.send(player, RedSkyPacket(useRedSky))
+                }
+
+                1
+            })
+        }
+
+        PayloadTypeRegistry.playS2C().register(RedSkyPacket.TYPE, RedSkyPacket.CODEC)
+
         /*var isChunkyRunning = true
 
         ServerPlayConnectionEvents.JOIN.register { handler, _, server ->
@@ -183,5 +214,7 @@ class CrimeUtilS5 : ModInitializer {
                 }
             }
         }
+
+        var useRedSky = false
     }
 }

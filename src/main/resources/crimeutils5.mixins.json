@@ -34,7 +34,9 @@
         "fixes.rendering_optimization.stellaris.GlobeBlockRendererMixin",
         "tweaks.howl.EntityRendererMixin",
         "tweaks.howl.WolfModelAccessor",
-        "tweaks.howl.WolfRendererMixin"
+        "tweaks.howl.WolfRendererMixin",
+        "tweaks.red_sky.FogRendererMixin",
+        "tweaks.red_sky.LevelRendererMixin"
     ],
     "injectors": {
         "defaultRequire": 1

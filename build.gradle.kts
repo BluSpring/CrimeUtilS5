@@ -49,6 +49,9 @@ repositories {
 
     maven { url = uri("https://maven.architectury.dev/") }
     maven { url = uri("https://maven.shedaniel.me/") }
+    maven {
+        url = uri("https://mvn.devos.one/snapshots/")
+    }
 
     maven("https://maven.ladysnake.org/releases") {
         name = "Ladysnake Mods"
@@ -91,6 +94,11 @@ dependencies {
     modImplementation("org.ladysnake.cardinal-components-api:cardinal-components-base:$ccaVersion")
     modImplementation("org.ladysnake.cardinal-components-api:cardinal-components-block:$ccaVersion")
     modImplementation("org.ladysnake.cardinal-components-api:cardinal-components-entity:$ccaVersion")
+
+    val plModules = listOf("base", "client_events")
+    for (module in plModules) {
+        modImplementation("io.github.fabricators_of_create.Porting-Lib:$module:3.1.0-beta.47+1.21.1")!!
+    }
 }
 
 tasks.processResources {
