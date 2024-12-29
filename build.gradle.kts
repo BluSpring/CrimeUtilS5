@@ -3,7 +3,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     kotlin("jvm") version "2.0.20"
-    id("fabric-loom") version "1.7.1"
+    id("fabric-loom") version "1.9-SNAPSHOT"
     id("maven-publish")
 }
 
@@ -72,10 +72,10 @@ dependencies {
     modImplementation("net.fabricmc.fabric-api:fabric-api:${project.property("fabric_version")}")
 
     modImplementation("maven.modrinth:chunky:dPliWter")
-    modCompileOnly("maven.modrinth:flashback:0.11.0")
+    modCompileOnly("maven.modrinth:flashback:0.15.0")
 
-    modImplementation("maven.modrinth:sodium:mc1.21.1-0.6.0-beta.4-fabric")
-    modImplementation("maven.modrinth:iris:1.8.0-beta.4+1.21-fabric")
+    modImplementation("maven.modrinth:sodium:mc1.21.1-0.6.5-fabric")
+    modImplementation("maven.modrinth:iris:1.8.1+1.21.1-fabric")
     //modImplementation(files("libs/DistantHorizons-fabric-2.3.0-a-dev-1.21.1.jar"))
 
     modImplementation("maven.modrinth:ninja-armor:1.3.0+1.21")

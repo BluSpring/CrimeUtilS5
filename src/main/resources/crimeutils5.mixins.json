@@ -13,6 +13,7 @@
         "SuspiciousEffectHolderMixin",
         "compat.techreborn.ElectricFurnaceBlockEntityAccessor",
         "fixes.flashback.ReplayGamePacketHandlerMixin",
+        "fixes.flashback.ReplayReaderMixin",
         "fixes.flashback.SynchedEntityDataAccessor",
         "fixes.stellaris.MotorUpgradeMixin",
         "tweaks.backpacks.BackpackAbilitiesMixin",
@@ -26,6 +27,7 @@
     ],
     "client": [
         "GuiGraphicsMixin",
+        "fixes.flashback.EntityRenderDispatcherMixin",
         "fixes.mipmap.MipmapGeneratorMixin",
         "fixes.mipmap.SpriteContentsMixin",
         "fixes.mipmap.SpriteContentsMixin$InterpolationDataMixin",
