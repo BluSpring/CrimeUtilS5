@@ -18,6 +18,7 @@
         "fixes.stellaris.MotorUpgradeMixin",
         "tweaks.backpacks.BackpackAbilitiesMixin",
         "tweaks.backpacks.LivingEntityMixin",
+        "tweaks.forced_target.SlimeMixin",
         "tweaks.howl.TamableAnimalMixin",
         "tweaks.weapons.ItemsMixin",
         "tweaks.weapons.MaceItemMixin",
