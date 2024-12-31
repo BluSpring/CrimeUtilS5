@@ -31,6 +31,9 @@ public abstract class SlimeMixin extends Mob implements ForcedTargetEntity {
             if (player == null)
                 return;
 
+            if (player.isDeadOrDying())
+                return;
+
             this.setTarget(player);
         }
     }
